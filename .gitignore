@@ -1,0 +1,53 @@
+# Built application files (빌드 결과물만 제외)
+*.apk
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+# Gradle files (빌드 결과만 제외, wrapper는 포함)
+.gradle/
+**/build/
+!src/**/build/
+
+# 사용자별 로컬 설정 (각자 SDK 경로가 다르므로 제외)
+local.properties
+
+# Log Files
+*.log
+
+# Android Studio captures folder
+captures/
+
+# IntelliJ
+**/.idea/
+*.iml
+**/*.iml
+
+# 외부 빌드 폴더
+.externalNativeBuild
+.cxx/
+
+# 프로파일링 파일
+*.hprof
+
+# OS 파일
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+
+# 임시/백업 파일
+*.bak
+*.swp
+*~.nib
