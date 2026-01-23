@@ -13,6 +13,6 @@ fun App() {
             .fillMaxSize()
             .safeContentPadding()
     ) {
-        BoxList()
+        DemoShop()
     }
 }
