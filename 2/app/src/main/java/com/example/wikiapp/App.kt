@@ -11,8 +11,7 @@ fun App() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .safeContentPadding()
     ) {
-        DemoShop()
+        DemoPage()
     }
 }
