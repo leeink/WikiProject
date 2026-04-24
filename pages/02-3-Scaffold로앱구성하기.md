@@ -176,8 +176,8 @@ fun DemoPage() {
 3번은 위젯을 배치하는 영역이다. 한 가지 짚고 넘어가야할 것이 있는데 위젯을 배치하는 영역은 topbar와 bottombar를 제외한 영역이다.
 
 <p align="center">
-      <img src="../assets/ch2/ch2-8.jpg" alt="위젯 배치 영역">
-      <img src="../assets/ch2/ch2-9.jpg" alt="위젯 배치 영역">
+      <img src="../assets/ch2-8.jpg" alt="위젯 배치 영역">
+      <img src="../assets/ch2-9.jpg" alt="위젯 배치 영역">
 </p>
 
 4번 플로팅 버튼은 위젯을 배치할 때 신경 쓰지 않아도 되는 위젯이다.
