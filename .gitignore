@@ -18,6 +18,10 @@ out/
 .gradle/
 **/build/
 !src/**/build/
+**/.gradle/
+**/gradlew
+**/gradlew.bat
+**/gradle/
 
 # 사용자별 로컬 설정 (각자 SDK 경로가 다르므로 제외)
 local.properties
