@@ -11,7 +11,7 @@ Jetpack Compose에서 여백을 주는 방법은 padding으로 준다.
 
 외부 여백과 내부 여백의 차이
 <p align="center">
-      <img src="https://static.wikidocs.net/images/page/321495/ch1-16.jpg" alt="내외부여백">
+      <img src="../assets/ch1/ch1-16.jpg" alt="내외부여백">
 </p>
 
 Modifier는 padding으로 내부여백만 줄 수 있다. 그런데 우리는 서로 다른 위젯 간에 간격을 줘야 한다. 즉, 외부 여백을 줘야 한다. Column이나 Row는 수직 배치, 수평 배치로 간격을 줄 수 있는데 그 이외에 방법으로 외부 여백을 주는 방법이 있을까? 물론 있다. 다음을 사용하면 된다.
