@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,9 +22,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,12 +38,15 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.serialization.Serializable
 import kotlin.collections.forEach
 import kotlin.collections.forEachIndexed
 
@@ -93,31 +100,39 @@ fun Travel() {
 
         }
     ) { paddingValues ->
-        ScrollableTabRow(
-            edgePadding = 16.dp,
-            selectedTabIndex = selectedTab,
+        Column(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            Tabs.entries.forEachIndexed { index, tab ->
-                Tab(
-                    selected = selectedTab == index,
-                    onClick = {
-                        navController.navigate(tab.route)
-                        selectedTab = index
-                    },
-                    text = {
-                        Text(
-                            text = tab.label,
-                            style = MaterialTheme.typography.bodySmall,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                )
+            ScrollableTabRow(
+                edgePadding = 16.dp,
+                selectedTabIndex = selectedTab,
+            ) {
+                Tabs.entries.forEachIndexed { index, tab ->
+                    Tab(
+                        selected = selectedTab == index,
+                        onClick = {
+                            navController.navigate(tab.route)
+                            selectedTab = index
+                        },
+                        text = {
+                            Text(
+                                text = tab.label,
+                                style = MaterialTheme.typography.bodySmall,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    )
+                }
             }
+            AppNavHost(
+                navController,
+                baseTab,
+                modifier = Modifier.weight(1f) // 나머지 공간 채우기
+            )
         }
-        AppNavHost(navController, baseTab, modifier = Modifier.padding(paddingValues))
     }
 }
 
@@ -135,7 +150,7 @@ fun AppNavHost(
         Tabs.entries.forEach { tab ->
             composable(tab.route) {
                 when (tab) {
-                    Tabs.POPULAR -> PopularScreen()
+                    Tabs.POPULAR -> PopularScreen(navController)
                     Tabs.RECENT -> RecentScreen()
                     Tabs.MOST -> MostScreen()
                     Tabs.FAVORITE -> FavoriteScreen()
@@ -144,16 +159,200 @@ fun AppNavHost(
                 }
             }
         }
+        composable("detail") {
+            DetailScreen()
+        }
     }
 }
 
 @Composable
-fun PopularScreen() {
+fun DetailScreen(){
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFD0CBFF))
+    ){
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.6f)
+                .clip(
+                    RoundedCornerShape(
+                        topStart = 48.dp,
+                        topEnd = 48.dp,
+                    )
+                )
+                .background(Color.White)
+                .align(Alignment.BottomCenter)
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+                    .padding(
+                        top = 36.dp,
+                        bottom = 100.dp,
+                        start = 36.dp,
+                        end = 36.dp)
+            ) {
+                Text(
+                    text = "Mount Fuji",
+                    style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1,
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ){
+                    Icon(
+                        imageVector = Icons.Outlined.LocationOn,
+                        contentDescription = "Location",
+                        tint = Color.Black,
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Text(
+                        text = "Honshu, Japan",
+                        fontSize = 14.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+                Row {
+                    repeat(5) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            tint = Color.Yellow,
+                            contentDescription = "Star",
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "4.5",
+                        style = MaterialTheme.typography.bodySmall,
+                        maxLines = 1,
+                        color = Color.Black
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ){
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .width(128.dp)
+                            .height(48.dp)
+                            .background(Color.LightGray)
+                        ,
+                    ){
+                        Button(onClick = {},
+                            modifier = Modifier
+                                .size(8.dp)
+                                .background(
+                                MaterialTheme.colorScheme.primaryContainer)
+                        ){
+
+                        }
+                        Text(
+                            text = "5",
+                            fontSize = 16.sp,
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Button(onClick = {},
+                            modifier = Modifier
+                                .size(8.dp)
+                                .background(MaterialTheme.colorScheme.primaryContainer)
+                        ){
+
+                        }
+                    }
+
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceAround,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ){
+                        Icon(
+                            imageVector = Icons.Outlined.Notifications,
+                            contentDescription = "Notification",
+                            tint = Color.Black,
+                            modifier = Modifier.size(32.dp)
+                        )
+                        Text(text = "5 Days",
+                            fontSize = 20.sp,
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,)
+                    }
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Description",
+                    style = MaterialTheme.typography.titleMedium,
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(
+                    text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                            " Dignissim eget amet viverra eget fames rhoncus." +
+                            " Eget enim venenatis enim porta egestas malesuada et." +
+                            " Consequat mauris lacus euismod montes." +
+                            " Consequat mauris lacus euismod montes." +
+                            " Consequat mauris lacus euismod montes.",
+                    fontSize = 16.sp,
+                    color = Color.Black,
+                    fontWeight = FontWeight.Normal,
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .background(Color.White)
+                    .padding(
+                        vertical = 12.dp,
+                        horizontal = 36.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ){
+                Text(
+                    text = "$400",
+                    fontSize = 32.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "/Package",
+                    fontSize = 24.sp,
+                    color = MaterialTheme.colorScheme.primary,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.width(36.dp))
+                TextButton(onClick = {},
+                    modifier = Modifier
+                        .width(200.dp)
+                        .clip(RoundedCornerShape(50))
+                        .background(MaterialTheme.colorScheme.primary)
+                ) {
+                    Text(
+                        text = "Book Now",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun PopularScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
             .padding(
-                top = 80.dp,
+                top = 24.dp,
                 bottom = 0.dp,
                 start = 24.dp,
                 end = 24.dp
@@ -165,7 +364,7 @@ fun PopularScreen() {
                 .horizontalScroll(rememberScrollState())
         ) {
             repeat(3) {
-                BannerComponent()
+                BannerComponent(navController = navController)
             }
         }
 
@@ -205,14 +404,14 @@ fun PopularScreen() {
                 .fillMaxWidth()
         ){
             repeat(6) {
-                BannerComponent(false)
+                BannerComponent(false, navController)
             }
         }
     }
 }
 
 @Composable
-fun BannerComponent(isLarge: Boolean = true){
+fun BannerComponent(isLarge: Boolean = true, navController: NavHostController){
     Box(
         modifier = Modifier
             .width(if(isLarge) 315.dp else 170.dp)
@@ -224,6 +423,11 @@ fun BannerComponent(isLarge: Boolean = true){
                 compositingStrategy = CompositingStrategy.Offscreen
             }
             .background(Color(0xFFD0CBFF))
+            .clickable(
+                onClick = {
+                    navController.navigate("detail")
+                },
+            )
     ) {
         Column(
             modifier = Modifier
@@ -247,8 +451,8 @@ fun BannerComponent(isLarge: Boolean = true){
             ) {
                 Text(
                     text = "Northern Mountain",
-                    style = if(isLarge) MaterialTheme.typography.titleLarge
-                        else MaterialTheme.typography.titleSmall,
+                    style = if(isLarge) MaterialTheme.typography.titleSmall
+                        else MaterialTheme.typography.bodySmall,
                     maxLines = 1,
                     color = Color.White
                 )
