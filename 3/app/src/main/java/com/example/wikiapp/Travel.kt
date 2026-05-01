@@ -13,14 +13,17 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Menu
@@ -39,6 +42,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -217,6 +221,7 @@ fun DetailScreen(){
                         fontWeight = FontWeight.Bold,
                     )
                 }
+
                 Row {
                     repeat(5) {
                         Icon(
@@ -245,29 +250,40 @@ fun DetailScreen(){
                         modifier = Modifier
                             .width(128.dp)
                             .height(48.dp)
+                            .clip(RoundedCornerShape(50.dp))
                             .background(Color.LightGray)
                         ,
                     ){
-                        Button(onClick = {},
+                        IconButton(onClick = {},
                             modifier = Modifier
-                                .size(8.dp)
-                                .background(
-                                MaterialTheme.colorScheme.primaryContainer)
+                                .offset(x = -(5).dp)
+                                .clip(RoundedCornerShape(40))
+                                .background(MaterialTheme.colorScheme.primaryContainer)
                         ){
-
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Add",
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
                         Text(
                             text = "5",
                             fontSize = 16.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
                         )
-                        Button(onClick = {},
+                        IconButton(onClick = {},
                             modifier = Modifier
-                                .size(8.dp)
+                                .offset(x = 5.dp)
+                                .clip(RoundedCornerShape(50))
                                 .background(MaterialTheme.colorScheme.primaryContainer)
                         ){
-
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Add",
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
                     }
 
@@ -295,6 +311,12 @@ fun DetailScreen(){
                 Spacer(modifier = Modifier.height(24.dp))
                 Text(
                     text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                            " Dignissim eget amet viverra eget fames rhoncus." +
+                            " Eget enim venenatis enim porta egestas malesuada et." +
+                            " Consequat mauris lacus euismod montes." +
+                            " Consequat mauris lacus euismod montes." +
+                            " Consequat mauris lacus euismod montes." +
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
                             " Dignissim eget amet viverra eget fames rhoncus." +
                             " Eget enim venenatis enim porta egestas malesuada et." +
                             " Consequat mauris lacus euismod montes." +
