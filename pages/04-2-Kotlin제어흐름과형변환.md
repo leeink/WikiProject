@@ -1,7 +1,7 @@
 # 제어흐름과 형 변환
 
 [1. 조건에 따른 흐름](#section-1)  
-[2. 형 변환](Type Casting)](#section-2)  
+[2. 형 변환(Type Casting)](#section-2)  
 [3. 반복처리](#section-3)
 
 
