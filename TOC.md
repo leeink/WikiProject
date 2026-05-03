@@ -1,5 +1,6 @@
 - [00. 개발환경 설정](pages/00-개발환경설정.md)
     - [00-1. Android Studio 설치](pages/00-1-AndroidStudio설치.md)
+    - [00-2. 프로젝트 구조](pages/00-2-프로젝트구조.md)
 - [01. Jetpack Compose 맛보기](pages/01-JetpackCompose맛보기.md)
     - [01-1. 시작해보자](pages/01-1-시작해보자.md)
     - [01-2. 위젯을 만들어보자](pages/01-2-위젯을만들어보자.md)
@@ -19,3 +20,5 @@
     - [03-6. 여행 앱 따라하기 3](pages/03-6-여행앱따라하기3.md)
 - [04. Kotlin](pages/04-Kotlin.md)
     - [04-1. Kotlin에 대해...](pages/04-1-Kotlin기본문법.md)
+    - [04-2. Kotlin 제어흐름과 형 변환](pages/04-2-Kotlin제어흐름과형변환.md)
+    - [04-3. Kotlin 함수](pages/04-3-Kotlin함수.md)
