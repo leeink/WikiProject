@@ -1,7 +1,9 @@
 # 제어흐름과 형 변환
 
 [1. 조건에 따른 흐름](#section-1)  
-[2. 반복처리](#section-2)
+[2. 형 변환](Type Casting)](#section-2)  
+[3. 반복처리](#section-3)
+
 
 * * *
 
@@ -165,7 +167,81 @@ fun main(){
 }
 ```
 
-### <span id="section-2">2. 반복처리</span>
+### <span id="section-2">2. 형 변환(Type Casting)</span>
+
+타입 캐스팅은 다른 타입으로 변환 하는 것이다.
+숫자를 문자 또는 문자열로, 문자 또는 문자열을 숫자로,
+같은 숫자이지만 정수를 실수로, 실수를 정수로 등등
+형 변환을 할 수 있다.  
+
+코틀린은 어떤 타입으로 변환할지를 명시해야 한다.
+
+```kotlin
+val a: Int = 100
+
+val b: Long   = a.toLong()
+val c: Double = a.toDouble()
+val d: Float  = a.toFloat()
+val e: Short  = a.toShort()
+val f: Byte   = a.toByte()
+val g: String = a.toString()
+```
+
+```kotlin
+val str = "100"
+
+val a = str.toInt()
+val b = str.toLong() 
+val c = str.toDouble()
+val d = str.toFloat()
+```
+
+변환을 안전하게 하려면 toIntOrNull()같은 함수를 사용한다.
+
+```kotlin
+val a = "123".toIntOrNull()
+val b = "abc".toIntOrNull()
+val c = "12.3".toIntOrNull()
+
+val result = "abc".toIntOrNull() ?: 0
+```
+
+타입이 어떤 타입인지 체크하고 싶을 때가 있는데
+코틀린은 타입 체크를 하면 자동으로 캐스팅을 해주는 기능이 있다.
+스마트 캐스트 라는 것이다.
+
+```kotlin
+fun main(){
+    val data: Any = "string"
+    if(data is String){
+        println(data.length)
+    }
+}
+```
+
+Any타입이어서 원래는 length가 호출이 안되어야 하지만
+스마트 캐스팅이 되어 data.length가 정상 실행된다.
+
+명시적으로 타입을 변환하는 방법이 하나 더 있는데 다음 예시와 같다.
+
+```kotlin
+fun main(){
+    val data: Any = "12345"
+    
+    val number = data as Int
+    val string = data as String
+    val bool = data as Boolean // Error
+
+    val number2 = data as? Int
+    val string2 = data as? String
+    val bool2 = data as? Boolean // null
+}
+```
+
+as를 쓰면 캐스팅 실패 시 에러가 나지만 as?를 쓰면 null을
+반환한다.
+
+### <span id="section-3">3. 반복처리</span>
 
 Kotlin에서의 반복문은 1장부터 3장까지 자주 사용해서 이미
 익숙하니 못보던 구문을 소개하겠다.

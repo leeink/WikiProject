@@ -159,6 +159,17 @@ val str2: String? = null      // nullable
 한 가지 차이점을 확인할 수 있는데 str2에서 타입을 선언할 때
 ?이 붙는다. ?가 붙으면 null허용 한다는 의미다.
 
+코틀린의 모든 타입은 Any?라는 타입에서 시작된다. 
+그리고 non-null타입의 Any가 그 다음이다.
+Number, String, Boolean, Char 등이 Any를 상속받았다.
+
+Unit이란 타입도 있는데 아무런 값도 반환하지 않는 함수의 반환
+타입이다.
+
+Nothing은 함수가 정상적으로 끝나지 않았을 때 이를 알리는
+반환 타입이다.
+
+
 ### <span id="section-3">3. 연산자</span>
 
 ```kotlin
