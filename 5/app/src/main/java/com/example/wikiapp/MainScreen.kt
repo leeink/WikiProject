@@ -15,6 +15,7 @@ fun NavHostController.handleNavigation(route: String) {
     when(route){
         "home" -> navigate("home")
         "sub" -> navigate("sub")
+        "example" -> navigate("example")
         else -> popBackStack()
     }
 }
@@ -37,6 +38,9 @@ fun MainScreen(){
             SubScreen(
                 navController::handleNavigation
             )
+        }
+        composable("example"){
+            ExampleScreen()
         }
     }
 }

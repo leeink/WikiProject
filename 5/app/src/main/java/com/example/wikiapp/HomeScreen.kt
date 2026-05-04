@@ -31,9 +31,19 @@ fun HomeScreen(
             text = "Home Screen",
         )
         Button(onClick = {
+            onNavigate("home")
+        }) {
+            Text(text = "Go home")
+        }
+        Button(onClick = {
             onNavigate("sub")
         }) {
-            Text(text = "Go SubScreen")
+            Text(text = "Go sub")
+        }
+        Button(onClick = {
+            onNavigate("example")
+        }) {
+            Text(text = "Go example")
         }
     }
 }
