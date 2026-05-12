@@ -1,4 +1,4 @@
-# 클래스(Class)와 인터페이스(Interface)
+## 클래스(Class)와 인터페이스(Interface)
 
 [1. 사용자 정의 타입](#section-1)  
 [2. 인터페이스](#section-2)  

@@ -1,4 +1,4 @@
-# ViewModel 기초
+## ViewModel 기초
 
 [1. ViewModel 기초](#section-1)  
 [2. 왜 ViewModel? ](#section-2)

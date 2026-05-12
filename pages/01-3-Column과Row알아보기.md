@@ -1,4 +1,4 @@
-# Column과 Row로 내 맘대로 위젯 배치하기
+## Column과 Row로 내 맘대로 위젯 배치하기
 
 [1. Column 알아보기](#section-1)  
 [2. Row 알아보기](#section-2)  

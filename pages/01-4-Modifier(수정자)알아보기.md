@@ -1,4 +1,4 @@
-# Modifier는 어렵다
+## Modifier는 어렵다
 [1. padding으로 여백주기](#section-1)  
 [2. 순서를 잘 지켜야 한다.](#section-2)  
 [3. 내 맘대로 Modifier](#section-3)

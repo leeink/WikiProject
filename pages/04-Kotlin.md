@@ -1,4 +1,4 @@
-# Kotlin Tour
+## Kotlin Tour
 
 이번 장에서는 코틀린(Kotlin)에 대해서 알아볼 것이다.
 이번 장의 구성은 다음과 같다.
