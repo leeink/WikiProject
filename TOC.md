@@ -31,3 +31,5 @@
     - [06-1. 코루틴](pages/06-1-코루틴.md)
     - [06-2. 플로우](pages/06-2-플로우.md)
 - [07. MVVM과 ViewModel](pages/07-MVVM과ViewModel.md)
+  - [07-1. ViewModel기초](pages/07-1-ViewModel기초.md)
+  - [07-2. 데이터 가져오기](pages/07-2-데이터가져오기.md)

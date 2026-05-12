@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.wikiapp.ui.theme.Teal
 import com.example.wikiapp.viewmodel.ProfileViewModel
 
 @Composable
@@ -46,7 +47,6 @@ fun ProfileScreen(
     onNavigate: (String) -> Unit = {},
 ) {
     val profile by viewModel.profile.collectAsStateWithLifecycle()
-    val teal = Color(0xFF1D9E75)
 
     Column(
         modifier = Modifier
@@ -63,7 +63,7 @@ fun ProfileScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp)
-                    .background(teal)
+                    .background(Teal)
             )
             Box(
                 modifier = Modifier
@@ -163,7 +163,7 @@ fun ProfileScreen(
                 onClick = { onNavigate("edit_profile") },
                 modifier = Modifier.fillMaxWidth().height(44.dp),
                 shape = RoundedCornerShape(8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = teal)
+                colors = ButtonDefaults.buttonColors(containerColor = Teal)
             ) {
                 Text("Edit Profile", fontWeight = FontWeight.Medium)
             }

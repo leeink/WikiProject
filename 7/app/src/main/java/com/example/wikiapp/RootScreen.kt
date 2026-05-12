@@ -47,7 +47,7 @@ fun RootScreen() {
     Scaffold(
         bottomBar = {
             BottomAppBar(windowInsets = NavigationBarDefaults.windowInsets) {
-                Page.entries.forEachIndexed { index, page ->
+                Page.entries.take(2).forEachIndexed { index, page ->
                     NavigationBarItem(
                         selected = index == selectedPage,
                         onClick = {
