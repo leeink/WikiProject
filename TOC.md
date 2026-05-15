@@ -23,6 +23,8 @@
     - [04-2. Kotlin 제어흐름과 형 변환](pages/04-2-Kotlin제어흐름과형변환.md)
     - [04-3. Kotlin 함수](pages/04-3-Kotlin함수.md)
     - [04-4. Kotlin 클래스와 인터페이스](pages/04-4-Kotlin클래스와인터페이스.md)
+    - [04-5. Kotlin 예외처리](pages/04-5-Kotlin예외처리.md)
+    - [04-6. Kotlin 스타일 프로그래밍](pages/04-6-Kotlin스타일프로그래밍.md)
 - [05. UI 아키텍처](pages/05-UI아키텍처.md)
     - [05-1. 단방향 데이터 흐름(UDF)](pages/05-1-단방향데이터흐름(UDF).md)
     - [05-2. 렌더링 단계](pages/05-2-렌더링단계.md)
