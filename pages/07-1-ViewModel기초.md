@@ -1,6 +1,6 @@
 ## ViewModel 기초
 
-[1. ViewModel 기초](#1-viewmodel-기초)
+[1. ViewModel 기초](#1-viewmodel-기초)  
 [2. 왜 ViewModel?](#2-왜-viewmodel)
 
 * * *

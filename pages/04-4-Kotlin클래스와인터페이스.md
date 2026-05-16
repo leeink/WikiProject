@@ -1,9 +1,10 @@
 ## 클래스(Class)와 인터페이스(Interface)
 
-[1. 사용자 정의 타입](#1-사용자-정의-타입)
-[2. 인터페이스](#2-인터페이스)
-[3. 열거형과 데이터 클래스](#3-열거형과-데이터-클래스)
+[1. 사용자 정의 타입](#1-사용자-정의-타입)  
+[2. 인터페이스](#2-인터페이스)  
+[3. 열거형과 데이터 클래스](#3-열거형과-데이터-클래스)  
 [4. 연산자 오버로딩](#4-연산자-오버로딩)
+[5. 컬렉션과 제네릭](#5-컬렉션과-제네릭)
 
 * * *
 
@@ -297,3 +298,83 @@ fun main() {
 다른 연산자들도 프로그래머가 직접 설정할 수 있다.
 클래스도 대소 비교를 할 수 있게 할 수 있는데 `Comparable<T>`를 상속받으면
 대소 비교도 할 수 있다.
+
+
+### 5. 컬렉션과 제네릭
+
+컬렉션은 자주 사용하는 자료구조를 미리 만들어 놓은 것들이다.
+코틀린에서 제공하는 컬렉션은 네 가지가 있는데 기본적인 자료구조에
+대한 이해가 있다면 어떤 상황에 어떤 것을 써야할 지 판단이 될 것이다.
+
+- `List`: 배열처럼 쓰는 자료구조(단 배열과 완전히 같지 않음)
+- `Set`: 중복값 허용이 안되는 자료구조
+- `Map`: 키-값 형태의 자료구조
+- `ArrayDeque`: `List`는 값을 삽입 삭제할 때 한 쪽 에서만 가능하지만
+이 컬렉션은 양쪽에서 가능하다.
+
+보통 사용할 때 `List<T>` 나 `ArrayDequeue<T>`처럼 쓴다.
+여기서 <T>는 데이터 타입을 가리킨다.
+
+```kotlin
+val sampleList: List<Int> = listOf(1, 2, 3)
+sampleList.forEach{ it -> 
+    println(it)
+}
+```
+
+직접 정의한 클래스도 사용 가능하다.
+
+```kotlin
+data class Person(val name: String, val age: Int)
+
+val personList: List<Person> = listOf(
+    Person("Alice", 29),
+    Person("Bob", 31),
+)
+personList.forEach { println(it) }
+```
+
+
+클래스를 정의할 때 다음과 같은 좌표 클래스를 만들었다고 하자.
+
+```kotlin
+data class Point(var x: Int, var y: Int)
+```
+
+그런데 좌표를 표현할 때 정수만 표현하는 것이 아닌 실수도 표현하고 싶을 때가
+있다. 정수 좌표를 표현할 때와 실수 좌표를 표현하는 데 있어서
+하나의 클래스만으로 처리가 가능할까? 가능하다. 답은 이미 위에서 컬렉션의 종류를
+살펴볼 때 알 수 있었다.
+
+
+```kotlin
+data class Point<T>(var x: T, var y: T)
+
+val integerPoint: List<Point<Int>> = listOf(
+    Point(10, 10),
+    Point(10, 20),
+)
+
+val doublePoint: List<Point<Double>> = listOf(
+    Point(10.12, 20.32),
+    Point(7.73, 50.90),
+)
+
+for(num in 0..<integerPoint.size){
+    println("${integerPoint[num]}, ${doublePoint[num]}")
+}
+```
+
+데이터 타입을 꼭 하나만 쓸 수 있는 것은 아니다. 다음과 같이 쓸 수도 있다.
+
+```kotlin
+data class OtherPoint<T, K>(var x: T, var y: K)
+
+val otherPoint: List<OtherPoint<Int, Double>> = listOf(
+    OtherPoint(1, 2.123),
+)
+```
+
+**제네릭**은 타입을 미리 지정하지 않고 사용하는 것이다. 제네릭을 활용하면
+동일한 사용 목적을 가진 클래스에 대해 여러 데이터 타입을 적용하여
+사용할 수 있다.

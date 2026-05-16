@@ -1,7 +1,7 @@
 ## 제어흐름과 형 변환
 
-[1. 조건에 따른 흐름](#1-조건에-따른-흐름)
-[2. 형 변환(Type Casting)](#2-형-변환type-casting)
+[1. 조건에 따른 흐름](#1-조건에-따른-흐름)  
+[2. 형 변환(Type Casting)](#2-형-변환type-casting)  
 [3. 반복처리](#3-반복처리)
 
 * * *
@@ -276,6 +276,19 @@ fun main() {
     for ((index, value) in arr.withIndex()) {
         println("$index's player: $value")
     }
+}
+```
+
+반복문으로 데이터를 순회할 수 있는 객체들을 `반복 가능한 객체(Iterable)`이라고도 한다.
+그리고 `반복자`라는 것을 가지고 순회를 한다. 반복 가능한 객체의 경우
+`.forEach`같은 함수들을 사용하여 반복문을 사용 가능하다. 반복자의 경우
+기본적인 이름은 `it`이고 프로그래머가 따로 정의가 가능하다. 
+
+```kotlin
+fun main() {
+    val arr: Array<String> = arrayOf("Kim", "Lee", "Hong", "Gang")
+    arr.forEach { println(it) }
+    // arr.forEach { iter -> println(iter) }
 }
 ```
 
